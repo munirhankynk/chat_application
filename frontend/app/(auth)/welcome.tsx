@@ -3,13 +3,13 @@ import ScreenWrapper from '@/components/ScreenWrapper';
 import Typo from '@/components/Typo';
 import { colors, spacingX, spacingY } from '@/constants/theme';
 import { verticalScale } from '@/utils/styling';
-import { StyleSheet } from 'react-native';
+import { useRouter } from 'expo-router';
+import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
-import { View } from 'react-native-reanimated/lib/typescript/Animated';
-
 const Welcome = () => {
+    const router = useRouter();
     return (
-        <ScreenWrapper showPattern={true}>
+        <ScreenWrapper showPattern={true} bgOpacity={0.5}>
             <View style={styles.container}>
                 <View style={{alignItems: 'center'}}>
                     <Typo color={colors.white} size={43} fontWeight={"900"}>
@@ -19,7 +19,7 @@ const Welcome = () => {
                 </View>
                 <Animated.Image
                     entering={FadeIn.duration(700).springify()}
-                    source={require("../../assets/images/welcomeImage.png")}
+                    source={require("../../assets/images/welcome.png")}
                     style={styles.welcomeImage}
                     resizeMode={"contain"}
                 />
@@ -35,7 +35,11 @@ const Welcome = () => {
                         and family.
                     </Typo>
                 </View>
-                <Button/>
+                <Button 
+                style={{backgroundColor: colors.white}} 
+                onPress={() => router.push("/(auth)/register")}>
+                    <Typo size={23} fontWeight={'bold'}>Get Started</Typo>
+                </Button>
             </View>
         </ScreenWrapper>
     );
