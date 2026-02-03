@@ -1,10 +1,12 @@
 import BackButton from "@/components/BackButton";
+import Input from "@/components/input";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import Typo from "@/components/Typo";
 import { colors, radius, spacingX, spacingY } from "@/constants/theme";
+import { verticalScale } from "@/utils/styling";
+import * as Icons from 'phosphor-react-native';
 import React from "react";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from "react-native";
-
 
 const Register = () => {
   return (
@@ -34,6 +36,11 @@ const Register = () => {
                         Create an account to continue
                     </Typo>
                 </View>
+                <Input 
+                placeholder="Enter your name"
+                onChangeText={(value: string) => console.log('name:', value)}
+                icon={<Icons.User size={verticalScale(26)} color={colors.neutral600} />}
+                />
 
                 
             </ScrollView>
